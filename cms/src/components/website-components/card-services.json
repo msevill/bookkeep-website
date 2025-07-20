@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_website_components_card_services",
+  "info": {
+    "displayName": "CardServices",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Service": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_website_components_card_testimonials",
+  "info": {
+    "displayName": "CardTestimonial",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Testimonial": {
+      "type": "text"
+    },
+    "ProfilePicture": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Designation": {
+      "type": "string"
+    },
+    "Rating": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

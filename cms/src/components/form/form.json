@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_form_forms",
+  "info": {
+    "displayName": "Form"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Fields": {
+      "type": "component",
+      "component": "form.form-field",
+      "repeatable": true
+    },
+    "SubmitButtonText": {
+      "type": "string"
+    },
+    "ActionEndpoint": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

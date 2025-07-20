@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "JumbotronSection": {
+      "type": "component",
+      "component": "website-components.jumbotron",
+      "repeatable": false
+    },
+    "TestimonialsSection": {
+      "type": "component",
+      "component": "sections.testimonial-section",
+      "repeatable": false
+    },
+    "ContactSection": {
+      "type": "component",
+      "component": "sections.contact-section",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_website_components_navlink_trees",
+  "info": {
+    "displayName": "NavlinkTree",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "parent": {
+      "type": "component",
+      "component": "website-components.navlink",
+      "repeatable": false
+    },
+    "children": {
+      "type": "component",
+      "component": "website-components.navlink",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

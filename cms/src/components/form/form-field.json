@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_form_form_fields",
+  "info": {
+    "displayName": "Form Field",
+    "icon": "pencil"
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "Placeholder": {
+      "type": "string"
+    },
+    "Required": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

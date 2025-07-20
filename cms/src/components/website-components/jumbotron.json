@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_website_components_jumbotrons",
+  "info": {
+    "displayName": "Jumbotron",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "Buttons": {
+      "type": "component",
+      "component": "website-components.button",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

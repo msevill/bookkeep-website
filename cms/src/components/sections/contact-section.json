@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_contact_sections",
+  "info": {
+    "displayName": "Contact Section",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Form": {
+      "type": "component",
+      "component": "form.form",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
