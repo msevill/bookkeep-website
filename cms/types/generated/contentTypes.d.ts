@@ -373,6 +373,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiContactInformationContactInformation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contact_informations';
+  info: {
+    displayName: 'Contact Information';
+    pluralName: 'contact-informations';
+    singularName: 'contact-information';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    businessHours: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-information.contact-information'
+    > &
+      Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    socmedFB: Schema.Attribute.String;
+    socmedLinkedIn: Schema.Attribute.String;
+    socmedX: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
@@ -478,6 +513,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    FAQSection: Schema.Attribute.Component<'sections.faq-section', false>;
     JumbotronSection: Schema.Attribute.Component<
       'website-components.jumbotron',
       false
@@ -489,6 +525,10 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    ServicesSection: Schema.Attribute.Component<
+      'sections.services-section',
+      false
+    >;
     TestimonialsSection: Schema.Attribute.Component<
       'sections.testimonial-section',
       false
@@ -581,6 +621,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    sgvIcon: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1096,6 +1137,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::faq.faq': ApiFaqFaq;
       'api::footer.footer': ApiFooterFooter;
       'api::header.header': ApiHeaderHeader;

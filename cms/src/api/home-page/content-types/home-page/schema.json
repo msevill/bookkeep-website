@@ -16,9 +16,19 @@
       "component": "website-components.jumbotron",
       "repeatable": false
     },
+    "ServicesSection": {
+      "type": "component",
+      "component": "sections.services-section",
+      "repeatable": false
+    },
     "TestimonialsSection": {
       "type": "component",
       "component": "sections.testimonial-section",
+      "repeatable": false
+    },
+    "FAQSection": {
+      "type": "component",
+      "component": "sections.faq-section",
       "repeatable": false
     },
     "ContactSection": {

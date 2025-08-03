@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_sub_sections_contact_informations",
+  "info": {
+    "displayName": "Contact Information",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Address": {
+      "type": "text"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "BusinessHours": {
+      "type": "string"
+    },
+    "SocialMediaFB": {
+      "type": "string"
+    },
+    "SocialMediaX": {
+      "type": "string"
+    },
+    "SocialMediaLinkedIn": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

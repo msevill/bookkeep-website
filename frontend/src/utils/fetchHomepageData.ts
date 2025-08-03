@@ -26,15 +26,78 @@ export interface TestimonialsSectionData {
   testimonials: Testimonial[];
 }
 
+export interface FAQItem {
+  id: string | number;
+  question: string;
+  answer: string;
+}
+
+export interface FAQSectionData {
+  title: string;
+  description: string;
+  faqs: FAQItem[];
+}
+
+export interface ServiceItem {
+  id: string | number;
+  name: string;
+  description: string;
+  sgvIcon: string;
+}
+
+export interface ServicesSectionData {
+  title: string;
+  description: string;
+  services: ServiceItem[];
+}
+
+export interface ContactInformation {
+  email: string;
+  address: string;
+  phone: string;
+  businessHours: string;
+  socmedFB?: string;
+  socmedX?: string;
+  socmedLinkedIn?: string;
+}
+
+export interface ContactFormField {
+  id: string | number;
+  label: string;
+  type: string;
+  placeholder?: string;
+  required?: boolean;
+}
+
+export interface ContactForm {
+  title: string;
+  submitButtonText: string;
+  actionEndpoint?: string | null;
+  fields: ContactFormField[];
+}
+
+export interface ContactSectionData {
+  title: string;
+  description: string;
+  contactInformation: ContactInformation;
+  form: ContactForm;
+}
+
 export interface HomepageData {
   jumbotron: JumbotronData;
   testimonialsSection: TestimonialsSectionData;
+  faqSection: FAQSectionData;
+  servicesSection: ServicesSectionData;
+  contactSection: ContactSectionData;
 }
 
 export async function fetchHomepageData(): Promise<HomepageData | null> {
   try {
-    const data: StrapiResponse<any> = await fetchFromApi('http://localhost:1337/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields');
+    const url = 'http://localhost:1337/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields&populate[]=ContactSection.contactInformation&populate[]=FAQSection.faqs&populate[]=ServicesSection.services';
+    const data: StrapiResponse<any> = await fetchFromApi(url);
     const homepage = data?.data;
+
+    console.log(data, url);
     if (!homepage) return null;
 
     const jumbotron = {
@@ -59,9 +122,62 @@ export async function fetchHomepageData(): Promise<HomepageData | null> {
       })),
     };
 
+    const faqSectionRaw = homepage.FAQSection ?? {};
+    const faqSection = {
+      title: faqSectionRaw.title ?? '',
+      description: faqSectionRaw.description ?? '',
+      faqs: (faqSectionRaw.faqs || []).map((f: any) => ({
+        id: f.id,
+        question: f.question ?? '',
+        answer: f.answer ?? '',
+      })),
+    };
+
+    const servicesSectionRaw = homepage.ServicesSection ?? {};
+    const servicesSection = {
+      title: servicesSectionRaw.title ?? '',
+      description: servicesSectionRaw.description ?? '',
+      services: (servicesSectionRaw.services || []).map((s: any) => ({
+        id: s.id,
+        name: s.name ?? '',
+        description: s.description ?? '',
+        sgvIcon: s.sgvIcon ?? '',
+      })),
+    };
+
+    const contactSectionRaw = homepage.ContactSection ?? {};
+    const contactSection = {
+      title: contactSectionRaw.Title ?? '',
+      description: contactSectionRaw.Description ?? '',
+      contactInformation: {
+        email: contactSectionRaw.contactInformation?.email ?? '',
+        address: contactSectionRaw.contactInformation?.address ?? '',
+        phone: contactSectionRaw.contactInformation?.phone ?? '',
+        businessHours: contactSectionRaw.contactInformation?.businessHours ?? '',
+        socmedFB: contactSectionRaw.contactInformation?.socmedFB ?? '',
+        socmedX: contactSectionRaw.contactInformation?.socmedX ?? '',
+        socmedLinkedIn: contactSectionRaw.contactInformation?.socmedLinkedIn ?? '',
+      },
+      form: {
+        title: contactSectionRaw.Form?.title ?? '',
+        submitButtonText: contactSectionRaw.Form?.SubmitButtonText ?? 'Send',
+        actionEndpoint: contactSectionRaw.Form?.ActionEndpoint ?? null,
+        fields: (contactSectionRaw.Form?.Fields || []).map((f: any) => ({
+          id: f.id,
+          label: f.Label ?? '',
+          type: f.Type ?? 'text',
+          placeholder: f.Placeholder ?? '',
+          required: !!f.Required,
+        })),
+      },
+    };
+    
     return {
       jumbotron,
       testimonialsSection,
+      faqSection,
+      servicesSection,
+      contactSection,
     };
   } catch (error) {
     return null;

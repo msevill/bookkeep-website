@@ -9,10 +9,18 @@
     "Title": {
       "type": "string"
     },
+    "Description": {
+      "type": "text"
+    },
     "Form": {
       "type": "component",
       "component": "form.form",
       "repeatable": false
+    },
+    "contactInformation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contact-information.contact-information"
     }
   },
   "config": {}
