@@ -21,6 +21,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::inquiry.inquiry"
+    },
+    "sgvIcon": {
+      "type": "text"
     }
   }
 }

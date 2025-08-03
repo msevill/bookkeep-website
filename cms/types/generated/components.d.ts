@@ -34,8 +34,39 @@ export interface SectionsContactSection extends Struct.ComponentSchema {
     icon: 'dashboard';
   };
   attributes: {
+    contactInformation: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::contact-information.contact-information'
+    >;
+    Description: Schema.Attribute.Text;
     Form: Schema.Attribute.Component<'form.form', false>;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsFaqSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_faq_sections';
+  info: {
+    displayName: 'FAQ Section';
+    icon: 'bulletList';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    faqs: Schema.Attribute.Relation<'oneToMany', 'api::faq.faq'>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsServicesSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_services_sections';
+  info: {
+    displayName: 'Services Section';
+    icon: 'apps';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -51,6 +82,23 @@ export interface SectionsTestimonialSection extends Struct.ComponentSchema {
       true
     >;
     Title: Schema.Attribute.String;
+  };
+}
+
+export interface SubSectionsContactInformation extends Struct.ComponentSchema {
+  collectionName: 'components_sub_sections_contact_informations';
+  info: {
+    displayName: 'Contact Information';
+    icon: 'bulletList';
+  };
+  attributes: {
+    Address: Schema.Attribute.Text;
+    BusinessHours: Schema.Attribute.String;
+    Email: Schema.Attribute.Email;
+    Phone: Schema.Attribute.String;
+    SocialMediaFB: Schema.Attribute.String;
+    SocialMediaLinkedIn: Schema.Attribute.String;
+    SocialMediaX: Schema.Attribute.String;
   };
 }
 
@@ -141,7 +189,10 @@ declare module '@strapi/strapi' {
       'form.form': FormForm;
       'form.form-field': FormFormField;
       'sections.contact-section': SectionsContactSection;
+      'sections.faq-section': SectionsFaqSection;
+      'sections.services-section': SectionsServicesSection;
       'sections.testimonial-section': SectionsTestimonialSection;
+      'sub-sections.contact-information': SubSectionsContactInformation;
       'website-components.button': WebsiteComponentsButton;
       'website-components.card-services': WebsiteComponentsCardServices;
       'website-components.card-testimonial': WebsiteComponentsCardTestimonial;
