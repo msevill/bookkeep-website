@@ -31,6 +31,9 @@
     },
     "socmedLinkedIn": {
       "type": "string"
+    },
+    "uuid": {
+      "type": "uid"
     }
   }
 }
