@@ -22,6 +22,18 @@
     },
     "inquiry": {
       "type": "text"
+    },
+    "uuid": {
+      "type": "uid",
+      "private": true,
+      "required": false
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "private": true,
+      "inversedBy": "inquiries"
     }
   }
 }

@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
@@ -20,10 +21,23 @@
     "inquiries": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::inquiry.inquiry"
+      "target": "api::inquiry.inquiry",
+      "private": true,
+      "mappedBy": "service"
     },
     "sgvIcon": {
       "type": "text"
+    },
+    "uuid": {
+      "type": "uid",
+      "private": true,
+      "targetField": "",
+      "required": false
+    },
+    "formFields": {
+      "type": "component",
+      "component": "form.form",
+      "repeatable": true
     }
   }
 }
