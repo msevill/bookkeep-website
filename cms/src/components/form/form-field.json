@@ -17,6 +17,9 @@
     },
     "Required": {
       "type": "boolean"
+    },
+    "Key": {
+      "type": "string"
     }
   },
   "config": {}

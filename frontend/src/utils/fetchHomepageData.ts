@@ -1,4 +1,5 @@
 import { fetchFromApi } from './fetchFromApi';
+import { API_BASE_URL } from '../config/api';
 import type { StrapiResponse } from '../types/strapi';
 
 export interface JumbotronButton {
@@ -43,6 +44,7 @@ export interface ServiceItem {
   name: string;
   description: string;
   sgvIcon: string;
+  uuid: string;
 }
 
 export interface ServicesSectionData {
@@ -67,6 +69,7 @@ export interface ContactFormField {
   type: string;
   placeholder?: string;
   required?: boolean;
+  key?: string;
 }
 
 export interface ContactForm {
@@ -93,11 +96,10 @@ export interface HomepageData {
 
 export async function fetchHomepageData(): Promise<HomepageData | null> {
   try {
-    const url = 'http://localhost:1337/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields&populate[]=ContactSection.contactInformation&populate[]=FAQSection.faqs&populate[]=ServicesSection.services';
+    const url = `${API_BASE_URL}/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields&populate[]=ContactSection.contactInformation&populate[]=FAQSection.faqs&populate[]=ServicesSection.services`;
     const data: StrapiResponse<any> = await fetchFromApi(url);
     const homepage = data?.data;
 
-    console.log(data, url);
     if (!homepage) return null;
 
     const jumbotron = {
@@ -142,6 +144,7 @@ export async function fetchHomepageData(): Promise<HomepageData | null> {
         name: s.name ?? '',
         description: s.description ?? '',
         sgvIcon: s.sgvIcon ?? '',
+        uuid: s.uuid ?? '',
       })),
     };
 
@@ -168,6 +171,7 @@ export async function fetchHomepageData(): Promise<HomepageData | null> {
           type: f.Type ?? 'text',
           placeholder: f.Placeholder ?? '',
           required: !!f.Required,
+          key: f.Key ?? ''
         })),
       },
     };

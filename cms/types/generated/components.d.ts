@@ -20,6 +20,7 @@ export interface FormFormField extends Struct.ComponentSchema {
     icon: 'pencil';
   };
   attributes: {
+    Key: Schema.Attribute.String;
     Label: Schema.Attribute.String;
     Placeholder: Schema.Attribute.String;
     Required: Schema.Attribute.Boolean;

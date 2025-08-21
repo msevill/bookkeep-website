@@ -25,6 +25,7 @@ const Services: React.FC<ServicesProps> = ({ servicesSection }) => {
               icon={service.sgvIcon}
               name={service.name}
               description={service.description}
+              uuid={service.uuid}
             />
           ))}
         </div>

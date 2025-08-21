@@ -2,21 +2,29 @@
 import React from 'react';
 import { StrapiResponse, FooterContent } from '../types/strapi';
 import { fetchFromApi } from '../utils/fetchFromApi';
+import { API_BASE_URL } from '../config/api';
 
 const Footer: React.FC = () => {
-  let footer = '';
-  try {
-    const data: StrapiResponse<Partial<FooterContent>> = await fetchFromApi(
-      'http://localhost:1337/api/footer'
-    );
-    if (Array.isArray(data?.data)) {
-      footer = data.data[0]?.copyright ?? '';
-    } else {
-      footer = data?.data?.copyright ?? '';
-    }
-  } catch (error) {
-    footer = 'Failed to load footer.';
-  }
+  // Removed duplicate 'footer' variable declaration and logic
+
+  const [footer, setFooter] = React.useState('');
+  React.useEffect(() => {
+    const fetchFooter = async () => {
+      try {
+        const data: StrapiResponse<Partial<FooterContent>> = await fetchFromApi(
+          `${API_BASE_URL}/api/footer`
+        );
+        if (Array.isArray(data?.data)) {
+          setFooter(data.data[0]?.copyright ?? '');
+        } else {
+          setFooter(data?.data?.copyright ?? '');
+        }
+      } catch (error) {
+        setFooter('Failed to load footer.');
+      }
+    };
+    fetchFooter();
+  }, []);
 
   return (
     <footer className="bg-blue-900 text-white pt-16 pb-8">
