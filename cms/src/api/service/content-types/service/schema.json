@@ -30,7 +30,6 @@
     },
     "uuid": {
       "type": "uid",
-      "private": true,
       "targetField": "",
       "required": false
     },
