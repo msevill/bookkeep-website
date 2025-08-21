@@ -1,13 +1,13 @@
-import { STRAPI_DOMAIN, STRAPI_BEARER } from '../config/strapi';
+import { API_BASE_URL } from '../config/api';
 
-export async function postInquiryToStrapi({ name, email, phone, inquiry }: { name: string; email: string; phone: string; inquiry: string }) {
-  const response = await fetch(`${STRAPI_DOMAIN}/api/inquiries`, {
+export async function postInquiryToStrapi({ name, email, phone, inquiry, service }: { name: string; email: string; phone: string; inquiry: string; service?: string | number }) {
+  const response = await fetch(`${API_BASE_URL}/api/inquiries`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': `Bearer ${STRAPI_BEARER}`,
+      // Add authorization if needed
     },
-    body: JSON.stringify({ data: { name, email, phone, inquiry } }),
+    body: JSON.stringify({ data: { name, email, phone, inquiry, service } }),
   });
   return response;
 }

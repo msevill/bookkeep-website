@@ -5,14 +5,13 @@ import { postInquiryToStrapi } from '../../../utils/postInquiryToStrapi';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-     console.log(body)
     // Validate required fields
-    const { name, email, phone, inquiry } = body;
+    const { name, email, phone, inquiry, service } = body;
     if (!name || !email || !phone || !inquiry) {
       return NextResponse.json({ error: 'Missing required fields.' }, { status: 400 });
     }
-   
-    const response = await postInquiryToStrapi({ name, email, phone, inquiry });
+    console.log('Received inquiry:', { name, email, phone, inquiry, service });
+    const response = await postInquiryToStrapi({ name, email, phone, inquiry, service});
     const result = await response.json();
     return NextResponse.json(result, { status: response.status });
   } catch (error) {

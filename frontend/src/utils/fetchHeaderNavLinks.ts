@@ -1,5 +1,6 @@
 import { fetchFromApi } from './fetchFromApi';
 import type { StrapiResponse } from '../types/strapi';
+import { API_BASE_URL } from '../config/api';
 
 export interface NavLinkChild {
   label: string;
@@ -22,7 +23,7 @@ export interface HeaderData {
 
 export async function fetchHeaderData(): Promise<HeaderData | null> {
   try {
-    const data: StrapiResponse<any> = await fetchFromApi('http://localhost:1337/api/header?populate[0]=logo&populate[1]=NavlinkTree.parent&populate[2]=NavlinkTree.children');
+    const data: StrapiResponse<any> = await fetchFromApi(`${API_BASE_URL}/api/header?populate[0]=logo&populate[1]=NavlinkTree.parent&populate[2]=NavlinkTree.children`);
     const header = data?.data;
     if (!header) return null;
     const navLinks: NavLink[] = (header.NavlinkTree || []).map((item: any) => ({

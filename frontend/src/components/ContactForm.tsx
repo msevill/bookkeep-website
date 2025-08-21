@@ -3,7 +3,12 @@
 import React, { useState } from 'react';
 import type { ContactForm } from '../utils/fetchHomepageData';
 
-const ContactForm: React.FC<{ form: ContactForm }> = ({ form }) => {
+interface ContactFormProps {
+  form: ContactForm;
+  serviceId?: number | string;
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ form, serviceId }) => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -25,16 +30,28 @@ const ContactForm: React.FC<{ form: ContactForm }> = ({ form }) => {
       formData[field.label] = value;
     });
 
+    // Add serviceId to payload if present
+    const payload: Record<string, any> = {};
+    form.fields.forEach((field) => {
+      const value =
+        (
+          e.currentTarget.elements[field.label] as
+            | HTMLInputElement
+            | HTMLTextAreaElement
+        )?.value || '';
+      if (field.key) {
+        payload[field.key] = value;
+      }
+    });
+    if (serviceId) {
+      payload.service = serviceId;
+    }
+
     try {
       const res = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData['Your Name'],
-          email: formData['Email Address'],
-          phone: formData['Phone Number'],
-          inquiry: formData['Your Message'], // fix: use 'message' not 'inquiry'
-        }),
+        body: JSON.stringify(payload),
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || 'Submission failed');
@@ -56,6 +73,8 @@ const ContactForm: React.FC<{ form: ContactForm }> = ({ form }) => {
       onSubmit={handleSubmit}
       autoComplete="off"
     >
+      {/* Hidden service field for service page */}
+      {serviceId && <input type="hidden" name="service" value={serviceId} />}
       <div>
         <h3 className="text-lg font-semibold text-blue-800 mb-4">
           {form.title}
