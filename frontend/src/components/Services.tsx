@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeInOnView from './FadeInOnView';
 import { ServicesSectionData } from '../utils/fetchHomepageData';
 import ServiceCard from './cards/ServiceCard';
 
@@ -8,7 +9,7 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ servicesSection }) => {
   return (
-    <section id="services" className="py-16 bg-white">
+    <FadeInOnView as="section" id="services" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -30,7 +31,7 @@ const Services: React.FC<ServicesProps> = ({ servicesSection }) => {
           ))}
         </div>
       </div>
-    </section>
+    </FadeInOnView>
   );
 };
 

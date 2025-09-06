@@ -28,6 +28,17 @@ export interface FormFormField extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsAboutUs extends Struct.ComponentSchema {
+  collectionName: 'components_sections_about_uses';
+  info: {
+    displayName: 'About Us';
+  };
+  attributes: {
+    Description: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsContactSection extends Struct.ComponentSchema {
   collectionName: 'components_sections_contact_sections';
   info: {
@@ -189,6 +200,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'form.form': FormForm;
       'form.form-field': FormFormField;
+      'sections.about-us': SectionsAboutUs;
       'sections.contact-section': SectionsContactSection;
       'sections.faq-section': SectionsFaqSection;
       'sections.services-section': SectionsServicesSection;

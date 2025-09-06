@@ -7,10 +7,8 @@ interface ServicePageProps {
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
-  // Await params if it's a Promise (for edge cases in Next.js routing)
-  // params is always an object, no need to check for Promise
-  const service = await fetchServiceByUuid(params.uuid);
-
+  const { uuid } = await params;
+  const service = await fetchServiceByUuid(uuid);
   // Defensive: ensure service is an object and not undefined/null
   if (!service || typeof service !== 'object') {
     return (

@@ -14,7 +14,7 @@ export default async function Home() {
     <main>
       <Hero jumbotron={homepageData?.jumbotron} />
       <Services servicesSection={homepageData?.servicesSection} />
-      <AboutSection />
+      <AboutSection aboutData={homepageData?.AboutUsSection} />
       {/* <Seminars /> */}
       <Testimonials testimonialsSection={homepageData?.testimonialsSection} />
       <GetInTouch contactSection={homepageData?.contactSection} />

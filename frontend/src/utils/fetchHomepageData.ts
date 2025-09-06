@@ -86,20 +86,26 @@ export interface ContactSectionData {
   form: ContactForm;
 }
 
+export interface AboutUsSection {
+  id: number;
+  Title: string;
+  Description: any[];
+}
+
 export interface HomepageData {
   jumbotron: JumbotronData;
   testimonialsSection: TestimonialsSectionData;
   faqSection: FAQSectionData;
   servicesSection: ServicesSectionData;
   contactSection: ContactSectionData;
+  AboutUsSection: AboutUsSection;
 }
 
 export async function fetchHomepageData(): Promise<HomepageData | null> {
   try {
-    const url = `${API_BASE_URL}/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields&populate[]=ContactSection.contactInformation&populate[]=FAQSection.faqs&populate[]=ServicesSection.services`;
+    const url = `${API_BASE_URL}/api/home-page?populate[]=JumbotronSection.Buttons&populate[]=TestimonialsSection.Testimonials&populate[]=ContactSection.Form.Fields&populate[]=ContactSection.contactInformation&populate[]=FAQSection.faqs&populate[]=ServicesSection.services&populate[]=AboutUsSection`;
     const data: StrapiResponse<any> = await fetchFromApi(url);
     const homepage = data?.data;
-
     if (!homepage) return null;
 
     const jumbotron = {
@@ -176,12 +182,19 @@ export async function fetchHomepageData(): Promise<HomepageData | null> {
       },
     };
     
+    const aboutUsSectionRaw = homepage.AboutUsSection ?? {};
+    const AboutUsSection = {
+      id: aboutUsSectionRaw.id ?? 0,
+      Title: aboutUsSectionRaw.Title ?? '',
+      Description: aboutUsSectionRaw.Description ?? [],
+    };
     return {
       jumbotron,
       testimonialsSection,
       faqSection,
       servicesSection,
       contactSection,
+      AboutUsSection,
     };
   } catch (error) {
     return null;

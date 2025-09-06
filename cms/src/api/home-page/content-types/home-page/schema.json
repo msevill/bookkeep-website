@@ -35,6 +35,11 @@
       "type": "component",
       "component": "sections.contact-section",
       "repeatable": false
+    },
+    "AboutUsSection": {
+      "type": "component",
+      "component": "sections.about-us",
+      "repeatable": false
     }
   }
 }

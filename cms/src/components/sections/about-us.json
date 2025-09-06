@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_about_uses",
+  "info": {
+    "displayName": "About Us"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

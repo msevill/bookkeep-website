@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import FadeInOnView from './FadeInOnView';
 import TestimonialCard from './cards/TestimonialCard';
 import type { TestimonialsSectionData } from '../utils/fetchHomepageData';
 
@@ -8,7 +9,7 @@ interface TestimonialsProps {
 }
 
 const Testimonials: React.FC<TestimonialsProps> = ({ testimonialsSection }) => (
-  <div id="testimonials" className="py-16 bg-blue-50">
+  <FadeInOnView as="section" id="testimonials" className="py-16 bg-blue-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center">
         <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -31,7 +32,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonialsSection }) => (
         ))}
       </div>
     </div>
-  </div>
+  </FadeInOnView>
 );
 
 export default Testimonials;

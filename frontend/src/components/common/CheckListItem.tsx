@@ -24,7 +24,7 @@ const CheckListItem: React.FC<CheckListItemProps> = ({ text }) => (
         />
       </svg>
     </span>
-    <span className="text-lg text-white">{text}</span>
+  <span className="text-lg text-[#0a2342]">{text}</span>
   </li>
 );
 

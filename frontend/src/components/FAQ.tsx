@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import FadeInOnView from './FadeInOnView';
 import Accordion from './common/Accordion';
 import { FAQSectionData } from '../utils/fetchHomepageData';
 
@@ -9,7 +10,7 @@ interface FAQProps {
 
 const FAQ: React.FC<FAQProps> = ({ faqSection }) => {
   return (
-    <div id="faq" className="py-16 bg-white px-8">
+    <FadeInOnView as="section" id="faq" className="py-16 bg-white px-8">
       <div className="text-center">
         <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
           {faqSection.title}
@@ -21,7 +22,7 @@ const FAQ: React.FC<FAQProps> = ({ faqSection }) => {
       <div className="mt-12 space-y-4 max-w-3xl mx-auto">
         <Accordion items={faqSection.faqs} />
       </div>
-    </div>
+    </FadeInOnView>
   );
 };
 

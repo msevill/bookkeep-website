@@ -534,6 +534,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    AboutUsSection: Schema.Attribute.Component<'sections.about-us', false>;
     ContactSection: Schema.Attribute.Component<
       'sections.contact-section',
       false
